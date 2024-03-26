@@ -18,8 +18,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/agbangm/vaultctx/internal/vaultconfig"
 	"github.com/pkg/errors"
+	"github.com/vaultctx/internal/vaultconfig"
 )
 
 // CurrentOp prints the current context
