@@ -23,22 +23,22 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	err := new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`a: [1, 2`)).Parse()
+	err := new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`a: [1, 2`)).Parse()
 	if err == nil {
 		t.Fatal("expected error from bad yaml")
 	}
 
-	err = new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`[1, 2, 3]`)).Parse()
+	err = new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`[1, 2, 3]`)).Parse()
 	if err == nil {
 		t.Fatal("expected error from not-mapping root node")
 	}
 
-	err = new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`current-context: foo`)).Parse()
+	err = new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`current-context: foo`)).Parse()
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = new(vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
+	err = new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
 		WithCurrentCtx("foo").
 		WithCtxs().ToYAML(t))).Parse()
 	if err != nil {
@@ -49,7 +49,7 @@ func TestParse(t *testing.T) {
 func TestSave(t *testing.T) {
 	in := "a: [1, 2, 3]\n"
 	test := WithMockvaultconfigLoader(in)
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)

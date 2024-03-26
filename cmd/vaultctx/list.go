@@ -30,7 +30,7 @@ import (
 type ListOp struct{}
 
 func (_ ListOp) Run(stdout, stderr io.Writer) error {
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		if cmdutil.IsNotFoundErr(err) {

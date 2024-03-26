@@ -49,7 +49,7 @@ func (op DeleteOp) Run(_, stderr io.Writer) error {
 // deleteContext deletes a context entry by NAME or current-context
 // indicated by ".".
 func deleteContext(name string) (deleteName string, wasActiveContext bool, err error) {
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		return deleteName, false, errors.Wrap(err, "vaultconfig error")

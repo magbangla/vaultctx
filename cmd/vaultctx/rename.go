@@ -48,7 +48,7 @@ func parseRenameSyntax(v string) (string, string, bool) {
 // to the "new" value. If the old refers to the current-context,
 // current-context preference is also updated.
 func (op RenameOp) Run(_, stderr io.Writer) error {
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		return errors.Wrap(err, "vaultconfig error")

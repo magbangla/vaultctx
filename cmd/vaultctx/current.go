@@ -26,7 +26,7 @@ import (
 type CurrentOp struct{}
 
 func (_op CurrentOp) Run(stdout, _ io.Writer) error {
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		return errors.Wrap(err, "vaultconfig error")

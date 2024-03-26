@@ -40,7 +40,7 @@ type InteractiveDeleteOp struct {
 
 func (op InteractiveSwitchOp) Run(_, stderr io.Writer) error {
 	// parse vaultconfig just to see if it can be loaded
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	if err := kc.Parse(); err != nil {
 		if cmdutil.IsNotFoundErr(err) {
 			printer.Warning(stderr, "vaultconfig file not found")
@@ -78,7 +78,7 @@ func (op InteractiveSwitchOp) Run(_, stderr io.Writer) error {
 
 func (op InteractiveDeleteOp) Run(_, stderr io.Writer) error {
 	// parse vaultconfig just to see if it can be loaded
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	if err := kc.Parse(); err != nil {
 		if cmdutil.IsNotFoundErr(err) {
 			printer.Warning(stderr, "vaultconfig file not found")

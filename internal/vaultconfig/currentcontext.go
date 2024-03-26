@@ -16,7 +16,7 @@ package vaultconfig
 
 // GetCurrentContext returns "current-context" value in given
 // vaultconfig object Node, or returns "" if not found.
-func (k *vaultconfig) GetCurrentContext() string {
+func (k *Vaultconfig) GetCurrentContext() string {
 	v := valueOf(k.rootNode, "current-context")
 	if v == nil {
 		return ""
@@ -24,7 +24,7 @@ func (k *vaultconfig) GetCurrentContext() string {
 	return v.Value
 }
 
-func (k *vaultconfig) UnsetCurrentContext() error {
+func (k *Vaultconfig) UnsetCurrentContext() error {
 	curCtxValNode := valueOf(k.rootNode, "current-context")
 	curCtxValNode.Value = ""
 	return nil

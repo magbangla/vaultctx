@@ -23,7 +23,7 @@ import (
 )
 
 func Testvaultconfig_NamespaceOfContext_ctxNotFound(t *testing.T) {
-	kc := new(vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
+	kc := new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
 		WithCtxs(testutil.Ctx("c1")).ToYAML(t)))
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
@@ -36,7 +36,7 @@ func Testvaultconfig_NamespaceOfContext_ctxNotFound(t *testing.T) {
 }
 
 func Testvaultconfig_NamespaceOfContext(t *testing.T) {
-	kc := new(vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
+	kc := new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(testutil.KC().
 		WithCtxs(
 			testutil.Ctx("c1"),
 			testutil.Ctx("c2").Ns("c2n1")).ToYAML(t)))
@@ -66,7 +66,7 @@ func Testvaultconfig_SetNamespace(t *testing.T) {
 		WithCtxs(
 			testutil.Ctx("c1"),
 			testutil.Ctx("c2").Ns("c2n1")).ToYAML(t))
-	kc := new(vaultconfig).WithLoader(l)
+	kc := new(Vaultconfig).WithLoader(l)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}

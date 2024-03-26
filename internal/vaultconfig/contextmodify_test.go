@@ -23,21 +23,21 @@ import (
 )
 
 func Testvaultconfig_DeleteContextEntry_errors(t *testing.T) {
-	kc := new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`[1, 2, 3]`))
+	kc := new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`[1, 2, 3]`))
 	_ = kc.Parse()
 	err := kc.DeleteContextEntry("foo")
 	if err == nil {
 		t.Fatal("supposed to fail on non-mapping nodes")
 	}
 
-	kc = new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`a: b`))
+	kc = new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`a: b`))
 	_ = kc.Parse()
 	err = kc.DeleteContextEntry("foo")
 	if err == nil {
 		t.Fatal("supposed to fail if contexts key does not exist")
 	}
 
-	kc = new(vaultconfig).WithLoader(WithMockvaultconfigLoader(`contexts: "some string"`))
+	kc = new(Vaultconfig).WithLoader(WithMockvaultconfigLoader(`contexts: "some string"`))
 	_ = kc.Parse()
 	err = kc.DeleteContextEntry("foo")
 	if err == nil {
@@ -51,7 +51,7 @@ func Testvaultconfig_DeleteContextEntry(t *testing.T) {
 			testutil.Ctx("c1"),
 			testutil.Ctx("c2"),
 			testutil.Ctx("c3")).ToYAML(t))
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -74,7 +74,7 @@ func Testvaultconfig_DeleteContextEntry(t *testing.T) {
 func Testvaultconfig_ModifyCurrentContext_fieldExists(t *testing.T) {
 	test := WithMockvaultconfigLoader(
 		testutil.KC().WithCurrentCtx("abc").Set("field1", "value1").ToYAML(t))
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -94,7 +94,7 @@ func Testvaultconfig_ModifyCurrentContext_fieldExists(t *testing.T) {
 
 func Testvaultconfig_ModifyCurrentContext_fieldMissing(t *testing.T) {
 	test := WithMockvaultconfigLoader(`f1: v1`)
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -117,7 +117,7 @@ current-context: foo
 func Testvaultconfig_ModifyContextName_noContextsEntryError(t *testing.T) {
 	// no context entries
 	test := WithMockvaultconfigLoader(`a: b`)
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -130,7 +130,7 @@ func Testvaultconfig_ModifyContextName_contextsEntryNotSequenceError(t *testing.
 	// no context entries
 	test := WithMockvaultconfigLoader(
 		`contexts: "hello"`)
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -144,7 +144,7 @@ func Testvaultconfig_ModifyContextName_noChange(t *testing.T) {
 		testutil.Ctx("c1"),
 		testutil.Ctx("c2"),
 		testutil.Ctx("c3")).ToYAML(t))
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -158,7 +158,7 @@ func Testvaultconfig_ModifyContextName(t *testing.T) {
 		testutil.Ctx("c1"),
 		testutil.Ctx("c2"),
 		testutil.Ctx("c3")).ToYAML(t))
-	kc := new(vaultconfig).WithLoader(test)
+	kc := new(Vaultconfig).WithLoader(test)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}

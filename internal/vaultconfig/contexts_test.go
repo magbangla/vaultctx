@@ -28,7 +28,7 @@ func Testvaultconfig_ContextNames(t *testing.T) {
 			testutil.Ctx("abc"),
 			testutil.Ctx("def"),
 			testutil.Ctx("ghi")).Set("field1", map[string]string{"bar": "zoo"}).ToYAML(t))
-	kc := new(vaultconfig).WithLoader(tl)
+	kc := new(Vaultconfig).WithLoader(tl)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func Testvaultconfig_ContextNames(t *testing.T) {
 
 func Testvaultconfig_ContextNames_noContextsEntry(t *testing.T) {
 	tl := WithMockvaultconfigLoader(`a: b`)
-	kc := new(vaultconfig).WithLoader(tl)
+	kc := new(Vaultconfig).WithLoader(tl)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -55,7 +55,7 @@ func Testvaultconfig_ContextNames_noContextsEntry(t *testing.T) {
 
 func Testvaultconfig_ContextNames_nonArrayContextsEntry(t *testing.T) {
 	tl := WithMockvaultconfigLoader(`contexts: "hello"`)
-	kc := new(vaultconfig).WithLoader(tl)
+	kc := new(Vaultconfig).WithLoader(tl)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}
@@ -72,7 +72,7 @@ func Testvaultconfig_CheckContextExists(t *testing.T) {
 			testutil.Ctx("c1"),
 			testutil.Ctx("c2")).ToYAML(t))
 
-	kc := new(vaultconfig).WithLoader(tl)
+	kc := new(Vaultconfig).WithLoader(tl)
 	if err := kc.Parse(); err != nil {
 		t.Fatal(err)
 	}

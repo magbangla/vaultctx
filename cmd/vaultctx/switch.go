@@ -50,7 +50,7 @@ func switchContext(name string) (string, error) {
 		return "", errors.Wrap(err, "failed to determine state file")
 	}
 
-	kc := new(vaultconfig.vaultconfig).WithLoader(vaultconfig.DefaultLoader)
+	kc := new(vaultconfig.Vaultconfig).WithLoader(vaultconfig.DefaultLoader)
 	defer kc.Close()
 	if err := kc.Parse(); err != nil {
 		return "", errors.Wrap(err, "vaultconfig error")

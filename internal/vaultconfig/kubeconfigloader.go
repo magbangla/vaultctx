@@ -73,5 +73,5 @@ func vaultconfigPath() (string, error) {
 	if home == "" {
 		return "", errors.New("HOME or USERPROFILE environment variable not set")
 	}
-	return filepath.Join(home, ".vault", "config"), nil
+	return filepath.Join(home, ".vaultctx", "config"), nil
 }
