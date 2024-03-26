@@ -17,7 +17,7 @@ package vaultconfig
 import (
 	"testing"
 
-	"github.com/ahmetb/vaultctx/internal/testutil"
+	"github.com/magbangla/vaultctx/internal/testutil"
 )
 
 func Testvaultconfig_GetCurrentContext(t *testing.T) {

@@ -18,7 +18,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
 
 	"github.com/pkg/errors"
 )

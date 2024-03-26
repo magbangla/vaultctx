@@ -20,9 +20,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
 
-	"github.com/ahmetb/vaultctx/internal/testutil"
+	"github.com/magbangla/vaultctx/internal/testutil"
 )
 
 func Test_vaultconfigPath(t *testing.T) {

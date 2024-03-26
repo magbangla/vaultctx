@@ -20,7 +20,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
 )
 
 // UnsupportedOp indicates an unsupported flag.

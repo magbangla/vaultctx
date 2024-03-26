@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ahmetb/vaultctx/internal/testutil"
+	"github.com/magbangla/vaultctx/internal/testutil"
 )
 
 func Test_readLastContext_nonExistingFile(t *testing.T) {

@@ -19,7 +19,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/ahmetb/vaultctx/internal/testutil"
+	"github.com/magbangla/vaultctx/internal/testutil"
 )
 
 func Testvaultconfig_ContextNames(t *testing.T) {

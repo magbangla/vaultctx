@@ -17,7 +17,7 @@ package cmdutil
 import (
 	"testing"
 
-	"github.com/ahmetb/vaultctx/internal/testutil"
+	"github.com/magbangla/vaultctx/internal/testutil"
 )
 
 func Test_homeDir(t *testing.T) {

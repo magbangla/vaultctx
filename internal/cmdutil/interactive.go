@@ -20,7 +20,7 @@ import (
 
 	"github.com/mattn/go-isatty"
 
-	"github.com/ahmetb/vaultctx/internal/env"
+	"github.com/magbangla/vaultctx/internal/env"
 )
 
 // isTerminal determines if given fd is a TTY.

@@ -2,7 +2,7 @@
 
 COMMAND="${COMMAND:-$BATS_TEST_DIRNAME/../vaultns}"
 
-# TODO(ahmetb) remove this after bash implementations are deleted
+# TODO(magbangla) remove this after bash implementations are deleted
 export vaultCTL="$BATS_TEST_DIRNAME/../test/mock-vaultctl"
 
 # short-circuit namespace querying in vaultns go implementation

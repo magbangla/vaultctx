@@ -19,10 +19,10 @@ import (
 	"io"
 	"os"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
-	"github.com/ahmetb/vaultctx/internal/env"
-	"github.com/ahmetb/vaultctx/internal/printer"
 	"github.com/fatih/color"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/env"
+	"github.com/magbangla/vaultctx/internal/printer"
 )
 
 type Op interface {

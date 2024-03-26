@@ -19,7 +19,7 @@ import (
 
 	"github.com/fatih/color"
 
-	"github.com/ahmetb/vaultctx/internal/env"
+	"github.com/magbangla/vaultctx/internal/env"
 )
 
 var (

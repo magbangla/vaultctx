@@ -21,7 +21,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
 )
 
 func vaultctxPrevCtxFile() (string, error) {

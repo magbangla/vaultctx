@@ -21,9 +21,9 @@ import (
 	"facette.io/natsort"
 	"github.com/pkg/errors"
 
-	"github.com/ahmetb/vaultctx/internal/cmdutil"
-	"github.com/ahmetb/vaultctx/internal/printer"
-	"github.com/ahmetb/vaultctx/internal/vaultconfig"
+	"github.com/magbangla/vaultctx/internal/cmdutil"
+	"github.com/magbangla/vaultctx/internal/printer"
+	"github.com/magbangla/vaultctx/internal/vaultconfig"
 )
 
 // ListOp describes listing contexts.
