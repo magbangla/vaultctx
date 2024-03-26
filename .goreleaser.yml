@@ -1,0 +1,105 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This is an example goreleaser.yaml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+before:
+  hooks:
+  - go mod download
+builds:
+- id: vaultctx
+  main: ./cmd/vaultctx
+  binary: vaultctx
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - amd64
+  - arm
+  - arm64
+  - ppc64le
+  - s390x
+  goarm: [6, 7]
+- id: vaultns
+  main: ./cmd/vaultns
+  binary: vaultns
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - amd64
+  - arm
+  - arm64
+  - ppc64le
+  - s390x
+  goarm: [6, 7]
+archives:
+- id: vaultctx-archive
+  name_template: "vaultctx_{{ .Tag }}_{{ .Os }}_\n{{- with .Arch -}}\n  {{- if (eq . \"386\") -}}i386\n  {{- else if (eq . \"amd64\") -}}x86_64\n  {{- else -}}{{- . -}}\n  {{- end -}} \n{{ end }}\n{{- with .Arm -}}\n  {{- if (eq . \"6\") -}}hf\n  {{- else -}}v{{- . -}}\n  {{- end -}}\n{{- end -}}"
+  builds:
+  - vaultctx
+  format_overrides:
+  - goos: windows
+    format: zip
+  files: ["LICENSE"]
+- id: vaultns-archive
+  name_template: |-
+    vaultns_{{ .Tag }}_{{ .Os }}_
+    {{- with .Arch -}}
+      {{- if (eq . "386") -}}i386
+      {{- else if (eq . "amd64") -}}x86_64
+      {{- else -}}{{- . -}}
+      {{- end -}}
+    {{ end }}
+    {{- with .Arm -}}
+      {{- if (eq . "6") -}}hf
+      {{- else -}}v{{- . -}}
+      {{- end -}}
+    {{- end -}}
+  builds:
+  - vaultns
+  format_overrides:
+  - goos: windows
+    format: zip
+  files: ["LICENSE"]
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+release:
+  extra_files:
+  - glob: ./vaultns
+  - glob: ./vaultctx
+snapcrafts:
+- id: vaultctx
+  name: vaultctx
+  summary: 'vaultctx + vaultns: Power tools for vaultctl'
+  description: |
+    vaultctx is a tool to switch between contexts (clusters) on vaultctl faster.
+    vaultns is a tool to switch between vaultrnetes namespaces (and configure them for vaultctl) easily.
+  grade: stable
+  confinement: classic
+  base: core20
+  apps:
+    vaultctx:
+      command: vaultctx
+      completer: completion/vaultctx.bash
+    vaultns:
+      command: vaultns
+      completer: completion/vaultns.bash
